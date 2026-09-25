@@ -21,9 +21,6 @@ module Window =
         static member closingBehavior<'t when 't :> Window>(value) =
             AttrBuilder<'t>.CreateProperty(Window.ClosingBehaviorProperty, value, ValueNone)
 
-        static member extendClientAreaChromeHints<'t when 't :> Window>(value) =
-            AttrBuilder<'t>.CreateProperty(Window.ExtendClientAreaChromeHintsProperty, value, ValueNone)
-
         static member extendClientAreaTitleBarHeightHint<'t when 't :> Window>(value) =
             AttrBuilder<'t>.CreateProperty(Window.ExtendClientAreaTitleBarHeightHintProperty, value, ValueNone)
 
@@ -48,11 +45,11 @@ module Window =
         static member sizeToContent<'t when 't :> Window>(value) =
             AttrBuilder<'t>.CreateProperty(Window.SizeToContentProperty, value, ValueNone)
 
-        static member systemDecorations<'t when 't :> Window>(value) =
-            AttrBuilder<'t>.CreateProperty(Window.SystemDecorationsProperty, value, ValueNone)
-
         static member title<'t when 't :> Window>(value) =
             AttrBuilder<'t>.CreateProperty(Window.TitleProperty, value, ValueNone)
+
+        static member windowDecorations<'t when 't :> Window>(value) =
+            AttrBuilder<'t>.CreateProperty(Window.WindowDecorationsProperty, value, ValueNone)
 
         static member windowDecorationMargin<'t when 't :> Window>(func, ?subPatchOptions) =
             AttrBuilder<'t>.CreateSubscription(Window.WindowDecorationMarginProperty, func, ?subPatchOptions = subPatchOptions)

@@ -26,12 +26,3 @@ module ToggleButton =
         
         static member onIsCheckedChanged<'t when 't :> ToggleButton>(func: RoutedEventArgs -> unit, ?subPatchOptions) : IAttr<'t> =
             AttrBuilder<'t>.CreateSubscription<RoutedEventArgs>(ToggleButton.IsCheckedChangedEvent, func, ?subPatchOptions = subPatchOptions)
-            
-        static member onChecked<'t when 't :> ToggleButton>(func: RoutedEventArgs -> unit, ?subPatchOptions) : IAttr<'t> =
-            AttrBuilder<'t>.CreateSubscription<RoutedEventArgs>(ToggleButton.CheckedEvent, func, ?subPatchOptions = subPatchOptions)
-            
-        static member onUnchecked<'t when 't :> ToggleButton>(func: RoutedEventArgs -> unit, ?subPatchOptions) : IAttr<'t> =
-            AttrBuilder<'t>.CreateSubscription<RoutedEventArgs>(ToggleButton.UncheckedEvent, func, ?subPatchOptions = subPatchOptions)
-
-        static member onIndeterminate<'t when 't :> ToggleButton>(func : RoutedEventArgs -> unit, ?subPatchOptions) : IAttr<'t> =
-            AttrBuilder<'t>.CreateSubscription<RoutedEventArgs>(ToggleButton.IndeterminateEvent, func, ?subPatchOptions = subPatchOptions)

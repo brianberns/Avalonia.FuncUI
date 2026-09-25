@@ -8,7 +8,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Title>Avalonia FuncUI</Title>
     <PackageVersion>$(FuncUIVersion)</PackageVersion>
-    <Description>Develop cross-plattform MVU GUI Applications using F# and Avalonia!</Description>
+    <Description>Develop cross-platform MVU GUI Applications using F# and Avalonia!</Description>
     <PackageIcon>nuget_icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
-    <PackageReference Include="Avalonia.Controls.DataGrid" Version="$(AvaloniaVersion)" />
   </ItemGroup>
 
   <ItemGroup>
@@ -65,11 +64,9 @@
     <Compile Include="DSL\Base\TextPresenter.fs" />
     <Compile Include="DSL\Base\Animatable.fs" />
     <Compile Include="DSL\Base\RenderOptions.fs" />
-    <Compile Include="DSL\Primitives\LightDismissOverlayLayer.fs" />
-    <Compile Include="DSL\Primitives\VisualLayerManager.fs" />
+    <Compile Include="DSL\Base\TextOptions.fs" />
     <Compile Include="DSL\Primitives\AdornerLayer.fs" />
     <Compile Include="DSL\Primitives\OverlayLayer.fs" />
-    <Compile Include="DSL\Primitives\ChromeOverlayLayer.fs" />
     <Compile Include="DSL\Primitives\TemplatedControl.fs" />
     <Compile Include="DSL\Primitives\HeaderedContentControl.fs" />
     <Compile Include="DSL\Primitives\HeaderedSelectingItemsControl.fs" />
@@ -126,7 +123,6 @@
     <Compile Include="DSL\Buttons\ToggleSwitch.fs" />
     <Compile Include="DSL\Buttons\CheckBox.fs" />
     <Compile Include="DSL\Buttons\HyperlinkButton.fs" />
-    <Compile Include="DSL\Remote\RemoteWidget.fs" />
     <Compile Include="DSL\RepeatButton.fs" />
     <Compile Include="DSL\DatePicker.fs" />
     <Compile Include="DSL\TimePicker.fs" />
@@ -134,7 +130,7 @@
     <Compile Include="DSL\ItemsControl.fs" />
     <Compile Include="DSL\ContentControl.fs" />
     <Compile Include="DSL\TransitioningContentControl.fs" />
-    <Compile Include="DSL\BindingEvaluator.fs" />
+    
     <Compile Include="DSL\AutoCompleteBox.fs" />
     <Compile Include="DSL\NumericUpDown.fs" />
     <Compile Include="DSL\Decorator.fs" />
@@ -150,12 +146,16 @@
     <Compile Include="DSL\NativeControlHost.fs" />
     <Compile Include="DSL\Image.fs" />
     <Compile Include="DSL\ListBox.fs" />
+    <Compile Include="DSL\TableView.fs" />
     <Compile Include="DSL\RangeBase.fs" />
     <Compile Include="DSL\ListBoxItem.fs" />
     <Compile Include="DSL\MenuBase.fs" />
     <Compile Include="DSL\Menu.fs" />
+    <Compile Include="DSL\NativeMenu.fs" />
     <Compile Include="DSL\ContextMenu.fs" />
     <Compile Include="DSL\MenuItem.fs" />
+    <Compile Include="DSL\NativeMenuItem.fs" />
+    <Compile Include="DSL\TrayIcon.fs" />
     <Compile Include="DSL\GridSplitter.fs" />
     <Compile Include="DSL\DatePickerPresenter.fs" />
     <Compile Include="DSL\TimePickerPresenter.fs" />
@@ -178,11 +178,11 @@
     <Compile Include="DSL\TickBar.fs" />
     <Compile Include="DSL\Viewbox.fs" />
     <Compile Include="DSL\SelectableTextBlock.fs" />
-    <Compile Include="DSL\DataGrid.fs" />
     <Compile Include="DSL\PathIcon.fs" />
     <Compile Include="DSL\DragDrop.fs" />
     <Compile Include="DSL\Window.fs" />
     <Compile Include="DSL\KeyBinding.fs" />
+    <Compile Include="DSL\GroupBox.fs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,34 +1,38 @@
-name: Build and test
+name: Build and Test
 
 on:
   pull_request:
-    branches: [ master ]
+    branches: [ main, master ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
   build:
 
-    runs-on: macos-14
+    runs-on: macos-26
 
     steps:
     - name: xCode
-      run: sudo xcode-select -s /Applications/Xcode_16.1.app/Contents/Developer/
+      run: sudo xcode-select -s /Applications/Xcode_26.6.app/Contents/Developer/
 
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
+
     - name: Setup .NET
-
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: |
-          8.x.x
+          10.x.x
 
-    - name: install workloads
-      run: dotnet workload restore src/Avalonia.FuncUI.sln
+    - name: Install workloads
+      run: dotnet workload restore src/Avalonia.FuncUI.slnx
 
     - name: Restore dependencies
-      run: dotnet restore src/Avalonia.FuncUI.sln
+      run: dotnet restore src/Avalonia.FuncUI.slnx
+
     - name: Build
-      run: dotnet build src/Avalonia.FuncUI.sln --no-restore
+      run: dotnet build src/Avalonia.FuncUI.slnx --no-restore
+
     - name: Test
-      run: dotnet test src/Avalonia.FuncUI.sln --no-build --verbosity normal
-
-
+      run: dotnet test src/Avalonia.FuncUI.slnx --no-build --verbosity normal

@@ -27,12 +27,12 @@ module DragDropDemo =
         | Dropped of string
 
     let doDrag (e, dragCount) =
-        async {
-            let dragData = DataObject()
-            dragData.Set(DataFormats.Text, $"You have dragged text %d{dragCount} times")
+        task {
+            use dragData = new DataTransfer()
+            dragData.Add(DataTransferItem.Create(DataFormat.Text, $"You have dragged text %d{dragCount} times"))
 
             let! result = Dispatcher.UIThread.InvokeAsync<DragDropEffects>
-                              (fun _ -> DragDrop.DoDragDrop(e, dragData, DragDropEffects.Copy)) |> Async.AwaitTask
+                              (fun _ -> DragDrop.DoDragDropAsync(e, dragData, DragDropEffects.Copy))
             return match result with
                    | DragDropEffects.Copy -> "The text was copied"
                    | DragDropEffects.Link -> "The text was linked"
@@ -44,7 +44,7 @@ module DragDropDemo =
         match msg with
         | BeginDrag e ->
             let dragCount = state.dragCount + 1
-            { state with dragCount = dragCount }, Cmd.OfAsync.perform doDrag (e, dragCount) Dragged
+            { state with dragCount = dragCount }, Cmd.OfTask.perform doDrag (e, dragCount) Dragged
         | Dragged s ->
             { state with dragText = s }, Cmd.none
         | Dropped s -> { state with dropText = s }, Cmd.none
@@ -83,19 +83,19 @@ module DragDropDemo =
                                           (TextBlock.create
                                               [ TextBlock.text state.dropText
                                                 Control.onDrop (fun e ->
-                                                    if e.Data.Contains(DataFormats.Text) then
-                                                        Dropped(e.Data.GetText()) |> dispatch
-                                                    elif e.Data.Contains(DataFormats.Files) then
+                                                    if e.DataTransfer.Contains(DataFormat.Text) then
+                                                        Dropped(e.DataTransfer.TryGetText()) |> dispatch
+                                                    elif e.DataTransfer.Contains(DataFormat.File) then
                                                         Dropped
-                                                            (e.Data.GetFiles()
+                                                            (e.DataTransfer.TryGetFiles()
                                                             |> Seq.map (fun item -> item.Name)
                                                             |> String.concat Environment.NewLine)
                                                         |> dispatch
                                                     )
                                                 Control.onDragOver (fun e ->
                                                     e.DragEffects <-
-                                                        if e.Data.Contains(DataFormats.Text)
-                                                           || e.Data.Contains(DataFormats.Files) then
+                                                        if e.DataTransfer.Contains(DataFormat.Text)
+                                                           || e.DataTransfer.Contains(DataFormat.File) then
                                                             e.DragEffects
                                                             &&& (DragDropEffects.Copy ||| DragDropEffects.Link)
                                                         else

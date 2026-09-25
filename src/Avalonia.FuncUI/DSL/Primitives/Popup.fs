@@ -88,11 +88,6 @@ module Popup =
 
         static member placementRect<'t when 't :> Popup>(value: Rect option) : IAttr<'t> =
             value |> Option.toNullable |> Popup.placementRect
-
-        [<Obsolete "use 'placement' instead">]
-        static member placementMode<'t when 't :> Popup>(value: PlacementMode) : IAttr<'t> =
-            AttrBuilder<'t>.CreateProperty<PlacementMode>(Popup.PlacementModeProperty, value, ValueNone)
-
         static member placementTarget<'t when 't :> Popup>(value: Control) : IAttr<'t> =
             AttrBuilder<'t>.CreateProperty<Control>(Popup.PlacementTargetProperty, value, ValueNone)
 
@@ -110,3 +105,9 @@ module Popup =
 
         static member windowManagerAddShadowHint<'t when 't :> Popup>(value: bool) : IAttr<'t> =
             AttrBuilder<'t>.CreateProperty<bool>(Popup.WindowManagerAddShadowHintProperty, value, ValueNone)
+
+        static member shouldUseOverlayLayer<'t when 't :> Popup>(value: bool) : IAttr<'t> =
+            AttrBuilder<'t>.CreateProperty<bool>(Popup.ShouldUseOverlayLayerProperty, value, ValueNone)
+
+        static member isUsingOverlayLayer<'t when 't :> Popup>(value: bool) : IAttr<'t> =
+            AttrBuilder<'t>.CreateProperty<bool>(Popup.IsUsingOverlayLayerProperty, value, ValueNone)

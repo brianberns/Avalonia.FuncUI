@@ -25,11 +25,20 @@ FuncUI mostly consists of:
 - View DSL
 - Component model
 
+## Breaking changes in version 2.0
+Version 2.0 of FuncUI is built on Avalonia 12.0.
+Avalonia 12 has a number of breaking API changes which have necessitated matching breaking changes in FuncUI, such as the removal of previously obsoleted public functions and properties.
+Refer to the official [Breaking changes in Avalonia 12](https://docs.avaloniaui.net/docs/avalonia12-breaking-changes) documentation for full details.
+
+In addition, the DataGrid bindings which were previously built into the core FuncUI library have now been moved to the separate [AvaloniaCommunity.FuncUI.Bindings.DataGrid](https://www.nuget.org/packages/AvaloniaCommunity.FuncUI.Bindings.DataGrid) package. This means that if you depend on the DataGrid bindings then you will need to reference the new package from your project, but projects which don't use DataGrid will no longer have an unused dependency on it.
+
 ## Resources
 
 - 💨 [Getting started](https://funcui.avaloniaui.net)
 
 - 📚 [Documentation](https://funcui.avaloniaui.net/)
+
+- 📖 [Control Catalog (Samples of available controls)](https://github.com/fsprojects/Avalonia.FuncUI/tree/master/src/Avalonia.FuncUI.ControlCatalog/Avalonia.FuncUI.ControlCatalog.Desktop)
 
 - 📓 [Examples](https://github.com/fsprojects/Avalonia.FuncUI/tree/master/src/Examples)
 
@@ -65,7 +74,7 @@ type Components =
         )
 ```
 
-Find more examples using components in the [Components Examples folder](https://github.com/fsprojects/Avalonia.FuncUI/tree/master/src/Examples/Component%20Examples).
+Find more examples using components in the [Components Examples folder](https://github.com/fsprojects/Avalonia.FuncUI/tree/master/docs/components).
 
 ### Example using Elmish
 The same counter as above but using the `Avalonia.FuncUI.Elmish` package:
@@ -100,7 +109,7 @@ module Counter =
         ]    
 ```
 
-Find more examples using Elmish in the [Elmish Examples folder](https://github.com/fsprojects/Avalonia.FuncUI/tree/master/src/Examples/Elmish%20Examples)
+Find more examples using Elmish in the [Elmish Examples folder](https://github.com/fsprojects/Avalonia.FuncUI/tree/master/src/Examples/Elmish)
 
 # Maintainer(s)
 
